@@ -11,15 +11,19 @@ user.on('ready', () => {
   console.log(`Logged in as ${user.user.username}!`);
 });
 
-// on <Message> event
+// on <message> event
 user.on('message', message => {
-  if((message.attachments.size != 0 || ) && message.guild.name === config.donor.guild && message.channel.name === config.donor.channel) {
+  if(message.attachments.size != 0 && message.guild.name === config.donor.guild && message.channel.name === config.donor.channel) {
     console.log('message should send...')
     bot.guilds.find('name', config.recipient.guild).channels.find('name', config.recipient.channel).send(`Image from ${message.author} in ${message.guild.name}`, {
       files: [message.attachments.first().url]
     })
     .then(message => console.log(`Sent message: ${message.content}`))
     .catch(console.error);
+  }
+
+  if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(message.content)) {
+    bot.guilds.find('name', config.recipient.guild).channels.find('name', config.recipient.channel).send(`${message.author}:${message.content}`
   }
 });
 
