@@ -58,7 +58,7 @@ client.on('message', message => {
 
   // purge selected number of messages
   // TODO fix role perms
-  if (message.content.startsWith(prefix + 'purge') && (message.member.roles.exists('name','Aggressive'))) {
+  if (message.content.startsWith(prefix + 'purge') && (message.member.roles.exists('name','Aggressive') || message.member.roles.exists('name','Mod'))) {
     console.log(`${message.author}(${message.author.username}): ${message.content}.`);
     try {
       message.channel.bulkDelete(parseInt(message.content.substring(10), 10) + 1);
