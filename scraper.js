@@ -23,7 +23,9 @@ user.on('message', message => {
   }
 
   if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(message.content)) {
-    bot.guilds.find('name', config.recipient.guild).channels.find('name', config.recipient.channel).send(`${message.author}:${message.content}`
+    bot.guilds.find('name', config.recipient.guild).channels.find('name', config.recipient.channel).send(`${message.author}:${message.content}`)
+    .then(message => console.log(`Sent message: ${message.content}`))
+    .catch(console.error);
   }
 });
 
