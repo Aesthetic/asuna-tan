@@ -39,4 +39,4 @@ function avatarEmbed(message, user, index, length) {
   return embed;
 }
 as
-client.login(config.token);
+client.login(config.userToken);

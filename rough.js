@@ -125,4 +125,4 @@ function pad(num, size) {
     return s;
 }
 
-client.login(settings.token);
+client.login(settings.botToken);

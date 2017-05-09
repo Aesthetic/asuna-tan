@@ -131,4 +131,4 @@ function pad(num, size) {
     return s;
 }
 
-client.login(config.token);
+client.login(config.botToken);
