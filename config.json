@@ -1,0 +1,15 @@
+{
+  "userToken":"YOUR TOKEN GOES HERE",
+  "botToken":"YOUR TOKEN GOES HERE",
+  "prefix":"$as ",
+  "recipient":{
+    "guild":"",
+    "channel":""
+  },
+  "donor":{
+    "guild":"",
+    "channel":""
+  },
+  "welcome":true,
+  "goodbye":true
+}
