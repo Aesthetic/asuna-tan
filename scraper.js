@@ -22,7 +22,7 @@ user.on('message', message => {
     .catch(console.error);
   }
 
-  if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(message.content)) {
+  if(message.guild.name === config.donor.guild && message.channel.name === config.donor.channel && /(http:\/\/|www\.)\S+/i.test(message.content)) {
     bot.guilds.find('name', config.recipient.guild).channels.find('name', config.recipient.channel).send(`${message.author}:${message.content}`)
     .then(message => console.log(`Sent message: ${message.content}`))
     .catch(console.error);
@@ -31,3 +31,4 @@ user.on('message', message => {
 
 bot.login(config.botToken);
 user.login(config.userToken);
+process.on('unhandledRejection', err => console.error(`Uncaught Promise Error: \n${err.stack}`));

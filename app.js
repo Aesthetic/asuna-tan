@@ -59,13 +59,8 @@ client.on('message', message => {
   // purge selected number of messages
   // TODO fix role perms
   if (message.content.startsWith(prefix + 'purge') && (message.member.roles.exists('name','Mod') || message.member.roles.exists('name','Aggressive'))) {
-    console.log(`${message.author}(${message.author.username}): ${message.content}.`);
-    try {
-      message.channel.bulkDelete(parseInt(message.content.substring(10), 10) + 1);
-    } catch(e) {
-      console.log(e);
-    }
-    message.channel.sendMessage(`${message.author} deleted ${parseInt(message.content.substring(10), 10)} messages.`)
+    message.channel.bulkDelete(parseInt(message.content.substring(10), 10) + 1);
+    message.channel.send(`${message.author} deleted ${parseInt(message.content.substring(10), 10)} messages.`);
   }
 
   // returns Asuna-tan's uptime
@@ -132,3 +127,4 @@ function pad(num, size) {
 }
 
 client.login(config.botToken);
+process.on('unhandledRejection', err => console.error(`Uncaught Promise Error: \n${err.stack}`));
