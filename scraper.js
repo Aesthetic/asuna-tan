@@ -13,7 +13,7 @@ user.on('ready', () => {
 
 // on <message> event
 user.on('message', message => {
-  if(message.guild.name === config.donor.guild && message.channel.name === config.donor.channel) {
+  if(message.channel.type === 'text' && message.guild.name === config.donor.guild && message.channel.name === config.donor.channel) {
     if(message.attachments.size != 0) {
       bot.guilds.find('name', config.recipient.guild).channels.find('name', config.recipient.channel).send(`Image from ${message.author} in ${message.guild.name}`, {
         files: [message.attachments.first().url]
@@ -26,6 +26,20 @@ user.on('message', message => {
       bot.guilds.find('name', config.recipient.guild).channels.find('name', config.recipient.channel).send(`${message.author}: ${message.content}`)
       .then(message => console.log(`Sent message: ${message.content}`))
       .catch(console.error);
+    }
+  }
+});
+
+// on <messageReactionAdd> event
+bot.on('messageReactionAdd', reaction => {
+  if(reaction.message.guild.name === config.recipient.guild && reaction.message.channel.name === config.recipient.channel) {
+    if(reaction.count == 3) {
+      if(reaction.emoji.name === '😩') {
+        reaction.message.pin();
+      }
+      if(reaction.emoji.name === '❌') {
+        reaction.message.delete();
+      }
     }
   }
 });
