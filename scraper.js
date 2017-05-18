@@ -34,7 +34,7 @@ user.on('message', message => {
 bot.on('messageReactionAdd', reaction => {
   if(reaction.message.guild.name === config.recipient.guild && reaction.message.channel.name === config.recipient.channel) {
     if(reaction.count == 3) {
-      if(reaction.emoji.name === '😩') {
+      if(reaction.emoji.name === '🥕') {
         reaction.message.pin();
       }
       if(reaction.emoji.name === '❌') {
